@@ -6,11 +6,15 @@
 \LoadClass[12pt, letterpaper]{article}
 
 % Removes paragraph indentations
-\RequirePackage[parfill]{parskip}
+\RequirePackage{parskip}
 \RequirePackage{array}
 \RequirePackage{ifthen}
 % Required for hyperlinks
 \RequirePackage{hyperref}
+% Required for modifying "section" style
+\RequirePackage[explicit]{titlesec}
+% Required for horizontal lines
+\RequirePackage{xhfill}
 
 % No header/footers are needed
 \pagestyle{empty}
@@ -44,3 +48,7 @@
         \fi
     \end{center}
 }
+
+% SECTION
+\titleformat{\section}{\large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
+\titlespacing*{\section}{0pt}{0pt}{0pt}
