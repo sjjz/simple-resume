@@ -15,6 +15,12 @@
 \RequirePackage[explicit]{titlesec}
 % Required for horizontal lines
 \RequirePackage{xhfill}
+% Required for helper functions
+\RequirePackage{etextools}
+% Required for customizing list environments
+\RequirePackage{enumitem}
+% Required for adjusting margins
+\RequirePackage{changepage}
 
 % No header/footers are needed
 \pagestyle{empty}
@@ -26,10 +32,8 @@
 \newcommand{\github}[1]{\def\@github{#1}}
 \newcommand{\linkedin}[1]{\def\@linkedin{#1}}
 
-% WHITESPACE/SEPERATORS
-\def\@contactSep{\quad\textbar\quad}
-
 % HEADER
+\newcommand\@contactSep{\quad\textbar\quad}
 \newcommand{\makeHeader}{
     \begin{center}
         {\huge \@name\\}
@@ -52,3 +56,27 @@
 % SECTION
 \titleformat{\section}{\large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
 \titlespacing*{\section}{0pt}{0pt}{0pt}
+
+% RESUME ENTRY
+\newcommand{\@entryIndent}{5pt}
+\newcommand{\@entryBodyIndent}{5pt}
+
+% entry{<title>}{<subtitle[optional]>}{<location[optional]>}{<date[optional]>}
+\newenvironment{entry}[4]{
+    \begin{adjustwidth}{\@entryIndent}{}
+        \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} r@{}}
+            \textbf{#1} & \textit{\ifempty{#3}{#4}{#3}}\\
+            \textit{#2} & \textit{\ifempty{#3}{}{#4}}
+        \end{tabular*}
+        \begin{adjustwidth}{\@entryBodyIndent}{}
+}{
+        \end{adjustwidth}
+    \end{adjustwidth}
+}
+
+% Environment for lists in entry body
+\newenvironment{entryItems}{
+    \begin{itemize}[leftmargin=*]
+}{
+    \end{itemize}
+}
