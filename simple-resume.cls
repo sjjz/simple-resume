@@ -61,12 +61,12 @@
 \newcommand{\@entryIndent}{5pt}
 \newcommand{\@entryBodyIndent}{5pt}
 
-% entry{<title>}{<subtitle[optional]>}{<location[optional]>}{<date[optional]>}
+% entry{<title>}{<subtitle>}{<date>}{<location>}
 \newenvironment{entry}[4]{
     \begin{adjustwidth}{\@entryIndent}{}
-        \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} r@{}}
-            \textbf{#1} & \textit{\ifempty{#3}{#4}{#3}}\\
-            \textit{#2} & \textit{\ifempty{#3}{}{#4}}
+        \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}
+            \textbf{#1} & \ifempty{#3}{#4}{#3}
+            \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
         \end{tabular*}
         \begin{adjustwidth}{\@entryBodyIndent}{}
 }{
