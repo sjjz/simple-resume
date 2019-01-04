@@ -21,9 +21,14 @@
 \RequirePackage{enumitem}
 % Required for adjusting margins
 \RequirePackage{changepage}
+\RequirePackage{tabularx}
 
 % No header/footers are needed
 \pagestyle{empty}
+
+% COLUMN TYPES
+% Multiline column (use with tabularx)
+\newcolumntype{m}{>{\raggedright\arraybackslash}X}
 
 % CONTACT INFO
 \newcommand{\name}[1]{\def\@name{#1}}
@@ -79,4 +84,12 @@
     \begin{itemize}[leftmargin=*]
 }{
     \end{itemize}
+}
+
+\newenvironment{skills}{
+    \section{Skills}
+    % Use tabularx to allow multiline cells
+    \tabularx{\linewidth - \@entryIndent}{@{\hspace{\@entryIndent}} >{\bfseries}l m @{}}
+}{
+    \endtabularx
 }
