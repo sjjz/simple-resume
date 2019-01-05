@@ -39,9 +39,12 @@
 
 % HEADER
 \newcommand\@contactSep{\quad\textbar\quad}
+\newcommand{\@headerVspace}{\vspace{0pt}}
+\newcommand{\@nameVspace}{\vspace{10pt}}
 \newcommand{\makeHeader}{
     \begin{center}
         {\huge \@name\\}
+        \@nameVspace
         % Contacts
         \ifdefined\@phone
             \@phone \@contactSep
@@ -56,6 +59,7 @@
             \href{https://linkedin.com/in/\@linkedin}{linkedin.com/in/\@linkedin}
         \fi
     \end{center}
+    \@headerVspace
 }
 
 % SECTION
