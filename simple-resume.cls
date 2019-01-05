@@ -63,8 +63,10 @@
 }
 
 % SECTION
+\newcommand{\@sectionAfterSep}{-5pt}
+\newcommand{\@sectionBeforeSep}{0pt}
 \titleformat{\section}{\large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
-\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\section}{0pt}{\@sectionBeforeSep}{\@sectionAfterSep}
 
 % RESUME ENTRY
 \newcommand{\@entryIndent}{5pt}
