@@ -3,7 +3,7 @@
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-\LoadClass[12pt, letterpaper]{article}
+\LoadClass[11pt, letterpaper]{article}
 
 % Removes paragraph indentations
 \RequirePackage{parskip}
@@ -39,7 +39,7 @@
 
 % HEADER
 \newcommand\@contactSep{\quad\textbar\quad}
-\newcommand{\@headerVspace}{\vspace{0pt}}
+\newcommand{\@headerVspace}{\vspace{5pt}}
 \newcommand{\@nameVspace}{\vspace{10pt}}
 \newcommand{\makeHeader}{
     \begin{center}
@@ -65,7 +65,7 @@
 % SECTION
 \newcommand{\@sectionAfterSep}{-5pt}
 \newcommand{\@sectionBeforeSep}{0pt}
-\titleformat{\section}{\large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
+\titleformat{\section}{\Large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
 \titlespacing*{\section}{0pt}{\@sectionBeforeSep}{\@sectionAfterSep}
 
 % RESUME ENTRY
@@ -80,6 +80,7 @@
             \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
         \end{tabular*}
         \begin{adjustwidth}{\@entryBodyIndent}{}
+            \vspace{-5pt}
 }{
         \end{adjustwidth}
     \end{adjustwidth}
@@ -87,7 +88,7 @@
 
 % Environment for lists in entry body
 \newenvironment{entryItems}{
-    \begin{itemize}[leftmargin=*]
+    \begin{itemize}[leftmargin=*, nosep, itemsep=5pt]
 }{
     \end{itemize}
 }
