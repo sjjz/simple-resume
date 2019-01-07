@@ -25,9 +25,14 @@
 \RequirePackage{tabularx}
 % Required for configuring fonts
 \RequirePackage{fontspec}
+% Required for fontawesome icons
+\RequirePackage{fontawesome}
 
 % No header/footers are needed
 \pagestyle{empty}
+
+% HELPER COMMANDS
+\newcommand{\@iftrueelse}[3]{\ifthenelse{\boolean{#1}}{#2}{#3}}
 
 % COLUMN TYPES
 % Multiline column (use with tabularx)
@@ -41,25 +46,38 @@
 \newcommand{\linkedin}[1]{\def\@linkedin{#1}}
 
 % HEADER
-\newcommand\@contactSep{\quad\textbar\quad}
+\newcommand\@contactSep{\hspace{4pt}\textbullet\hspace{4pt}}
+\newcommand\@contactIconSep{\hspace{2pt}}
 \newcommand{\@headerVspace}{\vspace{5pt}}
 \newcommand{\@nameVspace}{\vspace{10pt}}
 \newcommand{\makeHeader}{
     \begin{center}
         {\fontsize{32pt}{38pt}\selectfont \@name\\}
-        \@nameVspace
         % Contacts
+        \newboolean{isFirstContact}
+        \setboolean{isFirstContact}{true}
         \ifdefined\@phone
-            \@phone \@contactSep
+            \@nameVspace
+            \setboolean{isFirstContact}{false}
+            \faPhone\@contactIconSep\@phone
         \fi
         \ifdefined\@email
-            \@email \@contactSep
+            \@iftrueelse{isFirstContact}%
+                {\setboolean{isFirstContact}{false}\@nameVspace}%
+                {\@contactSep}%
+            \faEnvelope\@contactIconSep\@email
         \fi
         \ifdefined\@github
-            \href{https://github.com/\@github}{github.com/\@github} \@contactSep
+            \@iftrueelse{isFirstContact}%
+                {\setboolean{isFirstContact}{false}\@nameVspace}%
+                {\@contactSep}%
+            \href{https://github.com/\@github}{\faGithub\@contactIconSep{github.com/\@github}}
         \fi
         \ifdefined\@linkedin
-            \href{https://linkedin.com/in/\@linkedin}{linkedin.com/in/\@linkedin}
+            \@iftrueelse{isFirstContact}%
+                {\setboolean{isFirstContact}{false}\@nameVspace}%
+                {\@contactSep}%
+            \href{https://linkedin.com/in/\@linkedin}{\faLinkedin\@contactIconSep{linkedin.com/in/\@linkedin}}
         \fi
     \end{center}
     \@headerVspace
