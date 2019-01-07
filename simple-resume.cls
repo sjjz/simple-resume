@@ -125,8 +125,10 @@
     \end{itemize}%
 }
 
+% List environment for skills
+% First column: Skillset category name
+% Second column: Skills
 \newenvironment{skills}{%
-    \section{Skills}
     % Use tabularx to allow multiline cells
     \tabularx{\linewidth - \@entryIndent}{@{\hspace{\@entryIndent}} >{\bfseries}l m @{}}%
 }{%
