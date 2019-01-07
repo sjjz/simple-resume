@@ -61,8 +61,8 @@
 \newcommand\@contactIconSep{\hspace{2pt}}
 \newcommand{\@headerVspace}{\vspace{5pt}}
 \newcommand{\@nameVspace}{\vspace{10pt}}
-\newcommand{\makeHeader}{
-    \begin{center}
+\newcommand{\makeHeader}{%
+    \begin{center}%
         {\fontsize{32pt}{38pt}\selectfont \@name\\}
         % Contacts
         \newboolean{isFirstContact}
@@ -70,28 +70,28 @@
         \ifdefined\@phone
             \@nameVspace
             \setboolean{isFirstContact}{false}
-            \faPhone\@contactIconSep\@phone
+            \faPhone\@contactIconSep\@phone%
         \fi
         \ifdefined\@email
-            \@iftrueelse{isFirstContact}%
-                {\setboolean{isFirstContact}{false}\@nameVspace}%
-                {\@contactSep}%
-            \faEnvelope\@contactIconSep\@email
+            \@iftrueelse{isFirstContact}
+                {\setboolean{isFirstContact}{false}\@nameVspace}
+                {\@contactSep}
+            \faEnvelope\@contactIconSep\@email%
         \fi
         \ifdefined\@github
-            \@iftrueelse{isFirstContact}%
-                {\setboolean{isFirstContact}{false}\@nameVspace}%
-                {\@contactSep}%
-            \href{https://github.com/\@github}{\faGithub\@contactIconSep{github.com/\@github}}
+            \@iftrueelse{isFirstContact}
+                {\setboolean{isFirstContact}{false}\@nameVspace}
+                {\@contactSep}
+            \href{https://github.com/\@github}{\faGithub\@contactIconSep{github.com/\@github}}%
         \fi
         \ifdefined\@linkedin
-            \@iftrueelse{isFirstContact}%
-                {\setboolean{isFirstContact}{false}\@nameVspace}%
-                {\@contactSep}%
-            \href{https://linkedin.com/in/\@linkedin}{\faLinkedin\@contactIconSep{linkedin.com/in/\@linkedin}}
+            \@iftrueelse{isFirstContact}
+                {\setboolean{isFirstContact}{false}\@nameVspace}
+                {\@contactSep}
+            \href{https://linkedin.com/in/\@linkedin}{\faLinkedin\@contactIconSep{linkedin.com/in/\@linkedin}}%
         \fi
     \end{center}
-    \@headerVspace
+    \@headerVspace% Space between header and content
 }
 
 % SECTION
@@ -105,30 +105,30 @@
 \newcommand{\@entryBodyIndent}{5pt}
 
 % entry{<title>}{<subtitle>}{<date>}{<location>}
-\newenvironment{entry}[4]{
-    \begin{adjustwidth}{\@entryIndent}{}
-        \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}
-            \textbf{#1} & \ifempty{#3}{#4}{#3}
-            \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
+\newenvironment{entry}[4]{%
+    \begin{adjustwidth}{\@entryIndent}{}%
+        \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
+            \textbf{#1} & \ifempty{#3}{#4}{#3}%
+            \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}%
         \end{tabular*}
-        \begin{adjustwidth}{\@entryBodyIndent}{}
-            \vspace{-5pt}
-}{
-        \end{adjustwidth}
-    \end{adjustwidth}
+        \begin{adjustwidth}{\@entryBodyIndent}{}%
+            \vspace{-5pt}%
+}{%
+        \end{adjustwidth}%
+    \end{adjustwidth}%
 }
 
 % Environment for lists in entry body
-\newenvironment{entryItems}{
-    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt]
-}{
-    \end{itemize}
+\newenvironment{entryItems}{%
+    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt]%
+}{%
+    \end{itemize}%
 }
 
-\newenvironment{skills}{
+\newenvironment{skills}{%
     \section{Skills}
     % Use tabularx to allow multiline cells
-    \tabularx{\linewidth - \@entryIndent}{@{\hspace{\@entryIndent}} >{\bfseries}l m @{}}
-}{
-    \endtabularx
+    \tabularx{\linewidth - \@entryIndent}{@{\hspace{\@entryIndent}} >{\bfseries}l m @{}}%
+}{%
+    \endtabularx%
 }
