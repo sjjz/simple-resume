@@ -21,7 +21,10 @@
 \RequirePackage{enumitem}
 % Required for adjusting margins
 \RequirePackage{changepage}
+% Required for multiline cells
 \RequirePackage{tabularx}
+% Required for configuring fonts
+\RequirePackage{fontspec}
 
 % No header/footers are needed
 \pagestyle{empty}
@@ -43,7 +46,7 @@
 \newcommand{\@nameVspace}{\vspace{10pt}}
 \newcommand{\makeHeader}{
     \begin{center}
-        {\huge \@name\\}
+        {\fontsize{32pt}{38pt}\selectfont \@name\\}
         \@nameVspace
         % Contacts
         \ifdefined\@phone
@@ -88,7 +91,7 @@
 
 % Environment for lists in entry body
 \newenvironment{entryItems}{
-    \begin{itemize}[leftmargin=*, nosep, itemsep=5pt]
+    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt]
 }{
     \end{itemize}
 }
