@@ -2,7 +2,7 @@
 A simple LaTeX resume template inspired by [Awesome CV](https://github.com/posquit0/Awesome-CV).
 
 ### Example
-> ![Example](resume.png)
+<kbd><img src="resume.png"/></kbd>
 
 ## Requirements
 - [TeX Live](https://www.tug.org/texlive/)
