@@ -1,0 +1,110 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+% Pass in same options as article class.
+% Default page size is letterpaper and default font size is 11pt.
+\documentclass[12pt]{simple-resume}
+
+% \usepackage{showframe} % Uncomment to show page margins
+% Set page margins
+\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+
+% Name and contact info
+\name{John Doe}
+\phone{555-555-5555}
+\email{john@gmail.com}
+\github{john}
+\linkedin{john}
+
+\begin{document}
+\makeHeader% Makes header with name and contact info
+%
+\section{Skills}
+\begin{skills}% Skills environment creates a table with two columns
+    Languages & {Java, JavaScript, Python, Scala}\\
+    Frameworks & {React, Spring, ASP.NET}\\
+    Databases & {MongoDB, SQL Server, Firebase}
+\end{skills}
+%
+\section{Experience}
+\begin{entry}
+    {Company A.}% Title(title must not be empty but other arguments can)
+    {Software Engineer}% Subtitle
+    {Sep. 2018 - Present}% Date
+    {Montreal, Canada}% Location
+    \begin{entryItems}%
+	    \item {Led the development of the in-house A/B testing framework}
+	    \item {Contributed to the Apache Spark open-source project}
+	    \item {Implemented server-side rendering for the React application with 100+ components}
+    \end{entryItems}
+\end{entry}
+%
+\begin{entry}
+{Company B.}
+{Software Engineer}
+{Sep. 2017 - Sep.2018}
+{Toronto, Canada}%
+\begin{entryItems}
+    \item {Developed an Angular web application used by over 500 clients}
+    \item {Enhanced a Flask web application by adding internationalization}
+    \item {Improved content discovery by adding auto-complete for search}
+\end{entryItems}
+\end{entry}
+%
+\begin{entry}
+    {Company C.}
+    {Software Engineer}
+    {Sep. 2016 - Sep.2017}
+    {Toronto, Canada}%
+    \begin{entryItems}
+        \item {Developed an Angular web application used by over 500 clients}
+        \item {Enhanced a Flask web application by adding internationalization}
+        \item {Improved content discovery by adding auto-complete for search}
+    \end{entryItems}
+\end{entry}
+%
+\section{Projects}
+\begin{entry}
+      {Muzic}
+      {}
+      {Aug. 2017}
+      {}%
+    \begin{entryItems}
+        \item {Built a music recommendation system with a web interface}
+    \end{entryItems}
+\end{entry}
+%
+\begin{entry}
+      {Commando}
+      {}
+      {}
+      {Jan. 2017}%
+    \begin{entryItems}
+        \item {Produced an Android shooter game with 100+ downloads}
+    \end{entryItems}
+\end{entry}
+%
+\begin{entry}
+    {Apache Airflow}
+    {} 
+    {}
+    {Feb. 2016}%
+    \begin{entryItems}%
+        \item {Contributed to the Apache Airflow open-source project}
+    \end{entryItems}
+\end{entry}
+%
+\section{Education}
+\begin{entry}
+    {McGill University}
+    {Master of Science in Computer Science}
+    {Montreal, Canada}
+    {2017 - 2019}%
+\end{entry}
+\begin{entry}
+    {University of Waterloo}
+    {Bachelor of Software Engineering}
+    {Waterloo, Canada}
+    {2012 - 2017}%
+\end{entry}
+\end{document}
