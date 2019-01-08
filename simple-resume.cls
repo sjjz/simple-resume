@@ -75,19 +75,19 @@
         \ifdefined\@email
             \@iftrueelse{isFirstContact}
                 {\setboolean{isFirstContact}{false}\@nameVspace}
-                {\@contactSep}
+                {\@contactSep}%
             \faEnvelope\@contactIconSep\@email%
         \fi
         \ifdefined\@github
             \@iftrueelse{isFirstContact}
                 {\setboolean{isFirstContact}{false}\@nameVspace}
-                {\@contactSep}
+                {\@contactSep}%
             \href{https://github.com/\@github}{\faGithub\@contactIconSep{github.com/\@github}}%
         \fi
         \ifdefined\@linkedin
             \@iftrueelse{isFirstContact}
                 {\setboolean{isFirstContact}{false}\@nameVspace}
-                {\@contactSep}
+                {\@contactSep}%
             \href{https://linkedin.com/in/\@linkedin}{\faLinkedin\@contactIconSep{linkedin.com/in/\@linkedin}}%
         \fi
     \end{center}
