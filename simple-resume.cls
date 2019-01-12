@@ -5,8 +5,6 @@
 \ProcessOptions\relax
 \LoadClass[11pt, letterpaper]{article}
 
-% Required for defining colors
-\RequirePackage{xcolor}
 % Removes paragraph indentations
 \RequirePackage{parskip}
 \RequirePackage{array}
@@ -30,14 +28,8 @@
 % Required for fontawesome icons
 \RequirePackage{fontawesome}
 
-% COLORS
-\definecolor{linkcolor}{HTML}{0000ff}
-
 \hypersetup{
-    ocgcolorlinks,
-    colorlinks,
-    linkcolor=linkcolor,
-    urlcolor=linkcolor
+    hidelinks
 }
 % No header/footers are needed
 \pagestyle{empty}
