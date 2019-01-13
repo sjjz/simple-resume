@@ -19,14 +19,15 @@
 \begin{document}
 \makeHeader% Makes header with name and contact info
 %
-\section{Skills}
+\begin{rSection}{Skills}%
 \begin{skills}% Skills environment creates a table with two columns
     Languages & {Java, JavaScript, Python, Scala}\\
     Frameworks & {React, Spring, ASP.NET}\\
     Databases & {MongoDB, SQL Server, Firebase}
 \end{skills}
+\end{rSection}
 %
-\section{Experience}
+\begin{rSection}{Experience}%
 \begin{entry}
     {Company A.}% Title(title must not be empty but other arguments can)
     {Software Engineer}% Subtitle
@@ -62,8 +63,9 @@
         \item {Improved content discovery by adding auto-complete for search}
     \end{entryItems}
 \end{entry}
+\end{rSection}
 %
-\section{Projects}
+\begin{rSection}{Projects}%
 \begin{entry}
       {Muzic}
       {}
@@ -93,8 +95,9 @@
         \item {Contributed to the Apache Airflow open-source project}
     \end{entryItems}
 \end{entry}
+\end{rSection}
 %
-\section{Education}
+\begin{rSection}{Education}%
 \begin{entry}
     {McGill University}
     {Master of Science in Computer Science}
@@ -107,4 +110,5 @@
     {Waterloo, Canada}
     {2012 - 2017}%
 \end{entry}
+\end{rSection}
 \end{document}
