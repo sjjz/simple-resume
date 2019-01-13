@@ -87,6 +87,7 @@
 }
 
 % SECTION
+
 \newcommand{\@sectionAfterSep}{-5pt}
 \newcommand{\@sectionBeforeSep}{0pt}
 \newcommand{\@sectionBodyIndent}{5pt}
@@ -95,20 +96,28 @@
 % Custom section environment for resume.
 \newenvironment{rSection}[1]{%
     \section{#1}
-    \begin{adjustwidth}{\@sectionBodyIndent}{}
+    \begin{adjustwidth}{\@sectionBodyIndent}{}%
 }{%
     \end{adjustwidth}%
 }
 
 % RESUME ENTRY
-\newcommand{\@entryBodyIndent}{5pt}
 
-% entry{<title>}{<subtitle>}{<date>}{<location>}
-\newenvironment{entry}[4]{%
+% Draws the header for the entry.
+% entryHeader{<title>}{<subtitle>}{<date>}{<location>}
+\newcommand{\@entryHeader}[4]{%
     \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
         \textbf{#1} & \ifempty{#3}{#4}{#3}%
-        \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}%
-    \end{tabular*}
+        \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
+    \end{tabular*}%
+}
+
+\newcommand{\@entryBodyIndent}{5pt}
+
+% Environment for a resume entry. The body of the environment is the description.
+% entry{<title>}{<subtitle>}{<date>}{<location>}
+\newenvironment{entry}[4]{%
+    \@entryHeader{#1}{#2}{#3}{#4}
     \begin{adjustwidth}{\@entryBodyIndent}{}%
         \vspace{-5pt}%
 }{%
@@ -122,6 +131,8 @@
     \end{itemize}%
 }
 
+% SKILLS
+
 % List environment for skills
 % First column: Skillset category name
 % Second column: Skills
@@ -131,3 +142,9 @@
 }{%
     \endtabularx%
 }
+
+% EDUCATION
+
+% education{<school>}{<degree>}{<location>}{<gradutaion date>}
+\newcommand{\education}[4]{\@entryHeader{#1}{#2}{#3}{#4}}
+
