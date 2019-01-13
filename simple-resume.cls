@@ -145,6 +145,13 @@
 
 % EDUCATION
 
-% education{<school>}{<degree>}{<location>}{<gradutaion date>}
-\newcommand{\education}[4]{\@entryHeader{#1}{#2}{#3}{#4}}
+% education{<school>}{<degree>}{<location>}{<gradutaion date>}{<description>}
+\newcommand{\education}[5]{%
+    \ifempty{#5}{%
+        % If there is no body only draw a header
+        \@entryHeader{#1}{#2}{#3}{#4}%
+    }{% If there is a body then treat as normal entry
+        \begin{entry}{#1}{#2}{#3}{#4}#5\end{entry}%
+    }%
+}
 
