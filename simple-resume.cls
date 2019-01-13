@@ -87,42 +87,71 @@
 }
 
 % SECTION
+
 \newcommand{\@sectionAfterSep}{-5pt}
 \newcommand{\@sectionBeforeSep}{0pt}
+\newcommand{\@sectionBodyIndent}{5pt}
 \titleformat{\section}{\Large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
 \titlespacing*{\section}{0pt}{\@sectionBeforeSep}{\@sectionAfterSep}
+% Custom section environment for resume.
+\newenvironment{rSection}[1]{%
+    \section{#1}
+    \begin{adjustwidth}{\@sectionBodyIndent}{}%
+}{%
+    \end{adjustwidth}%
+}
 
 % RESUME ENTRY
-\newcommand{\@entryIndent}{5pt}
+
+% Draws the header for the entry.
+% entryHeader{<title>}{<subtitle>}{<date>}{<location>}
+\newcommand{\@entryHeader}[4]{%
+    \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
+        \textbf{#1} & \ifempty{#3}{#4}{#3}%
+        \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
+    \end{tabular*}%
+}
+
 \newcommand{\@entryBodyIndent}{5pt}
 
+% Environment for a resume entry. The body of the environment is the description.
 % entry{<title>}{<subtitle>}{<date>}{<location>}
 \newenvironment{entry}[4]{%
-    \begin{adjustwidth}{\@entryIndent}{}%
-        \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
-            \textbf{#1} & \ifempty{#3}{#4}{#3}%
-            \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}%
-        \end{tabular*}
-        \begin{adjustwidth}{\@entryBodyIndent}{}%
-            \vspace{-5pt}%
+    \@entryHeader{#1}{#2}{#3}{#4}
+    \begin{adjustwidth}{\@entryBodyIndent}{}%
+        \vspace{-5pt}%
 }{%
-        \end{adjustwidth}%
     \end{adjustwidth}%
 }
 
 % Environment for lists in entry body
 \newenvironment{entryItems}{%
-    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt]%
+    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt, topsep=3pt]%
 }{%
     \end{itemize}%
 }
+
+% SKILLS
 
 % List environment for skills
 % First column: Skillset category name
 % Second column: Skills
 \newenvironment{skills}{%
     % Use tabularx to allow multiline cells
-    \tabularx{\linewidth - \@entryIndent}{@{\hspace{\@entryIndent}} >{\bfseries}l m @{}}%
+    \tabularx{\linewidth}{@{} >{\bfseries}l m @{}}%
 }{%
     \endtabularx%
 }
+
+% EDUCATION
+
+% education{<school>}{<degree>}{<location>}{<gradutaion date>}{<description>}
+\newcommand{\education}[5]{%
+    \ifempty{#5}{%
+        % If there is no body only draw a header
+        \@entryHeader{#1}{#2}{#3}{#4}%
+    }{% If there is a body then treat as normal entry
+        \begin{entry}{#1}{#2}{#3}{#4}#5\end{entry}%
+    }%
+}
+
