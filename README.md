@@ -1,8 +1,8 @@
-# simple-resume
+# :clipboard: simple-resume :clipboard:
 A simple LaTeX resume template inspired by [Awesome CV](https://github.com/posquit0/Awesome-CV).
 
 ### Example
-<kbd><img src="resume.png"/></kbd>
+You can find an example PDF [here](resume.pdf).
 
 ## Requirements
 - [TeX Live](https://www.tug.org/texlive/)
