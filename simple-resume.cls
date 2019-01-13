@@ -126,7 +126,7 @@
 
 % Environment for lists in entry body
 \newenvironment{entryItems}{%
-    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt]%
+    \begin{itemize}[leftmargin=*, nosep, itemsep=3pt, topsep=3pt]%
 }{%
     \end{itemize}%
 }
