@@ -105,9 +105,10 @@
 
 % Draws the header for the entry.
 % entryHeader{<title>}{<subtitle>}{<date>}{<location>}
+\newcommand{\@entryTitleStyle}{\large\bfseries}
 \newcommand{\@entryHeader}[4]{%
     \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
-        {\large\bfseries #1} & \ifempty{#3}{#4}{#3}%
+        {\@entryTitleStyle #1} & \ifempty{#3}{#4}{#3}%
         \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
     \end{tabular*}%
 }
