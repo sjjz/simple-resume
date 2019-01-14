@@ -107,7 +107,7 @@
 % entryHeader{<title>}{<subtitle>}{<date>}{<location>}
 \newcommand{\@entryHeader}[4]{%
     \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
-        \textbf{#1} & \ifempty{#3}{#4}{#3}%
+        {\large\bfseries #1} & \ifempty{#3}{#4}{#3}%
         \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
     \end{tabular*}%
 }
