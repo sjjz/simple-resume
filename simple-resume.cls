@@ -34,6 +34,38 @@
 % No header/footers are needed
 \pagestyle{empty}
 
+% --- STYLES & SPACINGS ---
+% Override any of these commands to customize the styling
+
+% Header
+% Seperator between each contact info
+\newcommand\contactSep{\hspace{4pt}\textbullet\hspace{4pt}}
+% Seperator between icon and contact info
+\newcommand\contactIconSep{\hspace{2pt}}
+% Space between header and content
+\newcommand{\headerVspace}{\vspace{5pt}}
+% Space between name and contact bar in header
+\newcommand{\nameVspace}{\vspace{10pt}}
+% Styling for name
+\newcommand{\nameStyle}{\fontsize{32pt}{38pt}\selectfont}
+
+% Section
+\newcommand{\sectionAfterSep}{-5pt}
+\newcommand{\sectionBeforeSep}{0pt}
+\newcommand{\sectionBodyIndent}{5pt}
+\newcommand{\sectionTitleStyle}{\Large\bfseries}
+
+% Entry
+\newcommand{\entryTitleStyle}{\large\bfseries}
+\newcommand{\entrySubtitlesStyle}{\itshape}
+\newcommand{\entryBodyIndent}{5pt}
+
+% Skill
+\newcommand{\skillCategoryStyle}{\bfseries}
+
+% --- END ---
+
+
 % HELPER COMMANDS
 \newcommand{\@iftrueelse}[3]{\ifthenelse{\boolean{#1}}{#2}{#3}}
 
@@ -49,54 +81,47 @@
 \newcommand{\linkedin}[1]{\def\@linkedin{#1}}
 
 % HEADER
-\newcommand\@contactSep{\hspace{4pt}\textbullet\hspace{4pt}}
-\newcommand\@contactIconSep{\hspace{2pt}}
-\newcommand{\@headerVspace}{\vspace{5pt}}
-\newcommand{\@nameVspace}{\vspace{10pt}}
+
 \newcommand{\makeHeader}{%
     \begin{center}%
-        {\fontsize{32pt}{38pt}\selectfont \@name\\}
+        {\nameStyle \@name\\}
         % Contacts
         \newboolean{isFirstContact}
         \setboolean{isFirstContact}{true}
         \ifdefined\@phone
-            \@nameVspace
+            \nameVspace
             \setboolean{isFirstContact}{false}
-            \faPhone\@contactIconSep\@phone%
+            \faPhone\contactIconSep\@phone%
         \fi
         \ifdefined\@email
             \@iftrueelse{isFirstContact}
-                {\setboolean{isFirstContact}{false}\@nameVspace}
-                {\@contactSep}%
-            \faEnvelope\@contactIconSep\@email%
+                {\setboolean{isFirstContact}{false}\nameVspace}
+                {\contactSep}%
+            \faEnvelope\contactIconSep\@email%
         \fi
         \ifdefined\@github
             \@iftrueelse{isFirstContact}
-                {\setboolean{isFirstContact}{false}\@nameVspace}
-                {\@contactSep}%
-            \href{https://github.com/\@github}{\faGithub\@contactIconSep{github.com/\@github}}%
+                {\setboolean{isFirstContact}{false}\nameVspace}
+                {\contactSep}%
+            \href{https://github.com/\@github}{\faGithub\contactIconSep{github.com/\@github}}%
         \fi
         \ifdefined\@linkedin
             \@iftrueelse{isFirstContact}
-                {\setboolean{isFirstContact}{false}\@nameVspace}
-                {\@contactSep}%
-            \href{https://linkedin.com/in/\@linkedin}{\faLinkedin\@contactIconSep{linkedin.com/in/\@linkedin}}%
+                {\setboolean{isFirstContact}{false}\nameVspace}
+                {\contactSep}%
+            \href{https://linkedin.com/in/\@linkedin}{\faLinkedin\contactIconSep{linkedin.com/in/\@linkedin}}%
         \fi
     \end{center}
-    \@headerVspace% Space between header and content
+    \headerVspace
 }
 
 % SECTION
-
-\newcommand{\@sectionAfterSep}{-5pt}
-\newcommand{\@sectionBeforeSep}{0pt}
-\newcommand{\@sectionBodyIndent}{5pt}
-\titleformat{\section}{\Large\bfseries}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
-\titlespacing*{\section}{0pt}{\@sectionBeforeSep}{\@sectionAfterSep}
+\titleformat{\section}{\sectionTitleStyle}{}{0pt}{#1\xhrulefill{black}{0.5pt}}
+\titlespacing*{\section}{0pt}{\sectionBeforeSep}{\sectionAfterSep}
 % Custom section environment for resume.
 \newenvironment{rSection}[1]{%
     \section{#1}
-    \begin{adjustwidth}{\@sectionBodyIndent}{}%
+    \begin{adjustwidth}{\sectionBodyIndent}{}%
 }{%
     \end{adjustwidth}%
 }
@@ -105,21 +130,18 @@
 
 % Draws the header for the entry.
 % entryHeader{<title>}{<subtitle>}{<date>}{<location>}
-\newcommand{\@entryTitleStyle}{\large\bfseries}
 \newcommand{\@entryHeader}[4]{%
-    \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\itshape}r@{}}%
-        {\@entryTitleStyle #1} & \ifempty{#3}{#4}{#3}%
-        \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\\textit{#2} & \ifempty{#3}{}{#4}}}
+    \begin{tabular*}{\linewidth}{@{}l @{\extracolsep{\fill}} >{\entrySubtitlesStyle}r@{}}%
+        {\entryTitleStyle #1} & \ifempty{#3}{#4}{#3}%
+        \ifempty{#2#4}{}{\ifempty{#2#3}{}{\\{\entrySubtitlesStyle #2} & \ifempty{#3}{}{#4}}}
     \end{tabular*}%
 }
-
-\newcommand{\@entryBodyIndent}{5pt}
 
 % Environment for a resume entry. The body of the environment is the description.
 % entry{<title>}{<subtitle>}{<date>}{<location>}
 \newenvironment{entry}[4]{%
     \@entryHeader{#1}{#2}{#3}{#4}
-    \begin{adjustwidth}{\@entryBodyIndent}{}%
+    \begin{adjustwidth}{\entryBodyIndent}{}%
         \vspace{-5pt}%
 }{%
     \end{adjustwidth}%
@@ -139,7 +161,7 @@
 % Second column: Skills
 \newenvironment{skills}{%
     % Use tabularx to allow multiline cells
-    \tabularx{\linewidth}{@{} >{\bfseries}l m @{}}%
+    \tabularx{\linewidth}{@{} >{\skillCategoryStyle}l m @{}}%
 }{%
     \endtabularx%
 }
