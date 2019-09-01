@@ -59,6 +59,8 @@
 \newcommand{\entryTitleStyle}{\large\bfseries}
 \newcommand{\entrySubtitlesStyle}{\itshape}
 \newcommand{\entryBodyIndent}{5pt}
+% Space between entry header and body
+\newcommand{\entryHeaderVspace}{\vspace{-5pt}}
 
 % Skill
 \newcommand{\skillCategoryStyle}{\bfseries}
@@ -142,7 +144,7 @@
 \newenvironment{entry}[4]{%
     \@entryHeader{#1}{#2}{#3}{#4}
     \begin{adjustwidth}{\entryBodyIndent}{}%
-        \vspace{-5pt}%
+        \entryHeaderVspace%
 }{%
     \end{adjustwidth}%
 }
